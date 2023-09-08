@@ -11,6 +11,16 @@ const initialList = [
   { id: 4, title: 'Tfghgfhfgh', seen: false },
 ];
 
+//array of sums without current element
+const arr = [2,7,11,4,-2]
+
+let output = []
+arr.forEach((el)=> {
+  let uuu = [...arr.filter((item)=>item !== el)].reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+  output.push(uuu)
+  console.log(9999, uuu)
+})
+console.log(77, output)
 const countries = [
   {
     name: 'India',
