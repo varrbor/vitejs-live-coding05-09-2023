@@ -28,7 +28,8 @@ export default function App() {
   };
 
   const handleSorting = (name) => {
-    
+    console.log(name)
+    setUsers(_.sortBy(users, name));
   };
 
   useEffect(() => {
@@ -49,10 +50,10 @@ export default function App() {
       <table>
         <thead>
           <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>email</th>
-            <th>website</th>
+            <th inClick={()=>handleSorting('name')}>id</th>
+            <th inClick={()=>handleSorting('name')}>name</th>
+            <th inClick={()=>handleSorting('name')}>email</th>
+            <th inClick={()=>handleSorting('name')}>website</th>
           </tr>
         </thead>
         <tbody>
