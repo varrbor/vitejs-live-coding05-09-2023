@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { getUserList, getUserDetail } from "./api";
+import { useState, useEffect } from 'react';
+import { getUserList, getUserDetail } from './api';
 
-import "./styles.css";
+import './styles.css';
 
 // 1. fill users table with users from API.
 // 2. fill background color to each of user row. odd -red, even - green
@@ -12,6 +12,14 @@ import "./styles.css";
 // 5. add handler to each name cell -> click -> user address in console.log
 
 export default function App() {
+  const [users, setUsers] = useState([]);
+  const getUsers = async () => {
+    try {
+      const a = await getUserList();
+      setUsers(a);
+    } catch (err) {}
+  };
+  useEffect(() => getUsers);
   return (
     <div>
       <input placeholder="find user by name" />
@@ -25,12 +33,14 @@ export default function App() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>id</td>
-            <td>name</td>
-            <td>email</td>
-            <td>website</td>
-          </tr>
+          {users.map((user) => (
+            <tr key={user.id}>
+              <td>{user.id}</td>
+              <td>{user.name}</td>
+              <td>{user.email}</td>
+              <td>{user.website}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
