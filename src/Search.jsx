@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getUserList, getUserDetail } from './api';
+import _ from 'lodash';
 
 import './styles.css';
 
@@ -24,6 +25,10 @@ export default function App() {
 
   const handleSearch = (e) => {
     setInput(e.target.value);
+  };
+
+  const handleSorting = (name) => {
+    
   };
 
   useEffect(() => {
