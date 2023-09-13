@@ -13,6 +13,7 @@ import './styles.css';
 
 export default function App() {
   const [users, setUsers] = useState([]);
+  const [inp, setInput] = useState('');
   const getUsers = async () => {
     try {
       const a = await getUserList();
@@ -20,9 +21,26 @@ export default function App() {
     } catch (err) {}
   };
   useEffect(() => getUsers);
+
+  const handleSearch = (e) => {
+    setInput(e.target.value);
+  };
+
+  useEffect(() => {
+    if(inp.length===0) {
+      getUsers()
+      return
+    }
+    setUsers(users.filter((user) => user.name.toLowerCase().includes(inp.toLowerCase())));
+  }, [users, inp]);
+
   return (
     <div>
-      <input placeholder="find user by name" />
+      <input
+        onChange={handleSearch}
+        placeholder="find user by name"
+        value={inp}
+      />
       <table>
         <thead>
           <tr>
