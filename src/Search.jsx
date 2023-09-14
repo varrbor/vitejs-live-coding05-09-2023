@@ -21,24 +21,28 @@ export default function App() {
       setUsers(a);
     } catch (err) {}
   };
-  useEffect(() => getUsers);
+  useEffect(() => getUsers, []);
 
   const handleSearch = (e) => {
     setInput(e.target.value);
   };
 
   const handleSorting = (name) => {
-    console.log(name)
+    console.log(name);
     setUsers(_.sortBy(users, name));
   };
 
   useEffect(() => {
-    if(inp.length===0) {
-      getUsers()
-      return
+    if (inp.length === 0) {
+      getUsers();
+      return;
     }
-    setUsers(users.filter((user) => user.name.toLowerCase().includes(inp.toLowerCase())));
-  }, [users, inp]);
+    setUsers(
+      users.filter((user) =>
+        user.name.toLowerCase().includes(inp.toLowerCase())
+      )
+    );
+  }, [inp]);
 
   return (
     <div>
@@ -50,10 +54,10 @@ export default function App() {
       <table>
         <thead>
           <tr>
-            <th inClick={()=>handleSorting('name')}>id</th>
-            <th inClick={()=>handleSorting('name')}>name</th>
-            <th inClick={()=>handleSorting('name')}>email</th>
-            <th inClick={()=>handleSorting('name')}>website</th>
+            <th onClick={() => handleSorting('id')}>id</th>
+            <th onClick={() => handleSorting('name')}>name</th>
+            <th onClick={() => handleSorting('email')}>email</th>
+            <th onClick={() => handleSorting('website')}>website</th>
           </tr>
         </thead>
         <tbody>
